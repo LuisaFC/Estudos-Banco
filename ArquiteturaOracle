@@ -1,5 +1,38 @@
-Estruturas Fisicas e Lógicas
-	Lógicas:
-		Estruturas Primarias = Índices e Tabelas
+Estruturas Primarias = Índices e Tabelas
 			Tabelas - Local de armazenamento de dados
 			Índice - Referencia para recuperação - tipo que PK
+
+
+Estruturas Fisicas e Lógicas
+
+	Lógicas:
+		Segmentos - Objetos dos bancos de dados Oracle
+			Ex: tabela, indice, view, procedure, functio...
+
+		DataBlocks(Bloco de dados) - Unidade minima de armazenamento
+			- Segmentos são armazenados em datablocks
+			- Composto por :
+				- Header(Cabeçalho) - endereço do proximo bloco onde o dado continua(caso o bloco tenha sido totalmente ocupado)
+				- Espaço (Vazio)
+				- Dados (Espaço ocupado)
+			Tamanho do Bloco:
+				- 2kb - OLTP
+				- 4kb - OLTP
+				- 8kb - Padrão(Hibrido) - atende OLTP e OLAP
+				- 16kb - OLAP
+				- 32kb - OLAP
+				- O tamanho do bloco é definido de acordo com o banco, se ele é OLTP(Insert, Delete, Update) ou OLAP(Select)
+					- Quanto maior o bloco a leitura é mais rapida - Pois se o bloco é pequeno entao toda hora tem q mudar de bloco para completar a leitura do dado, o bloco sendo maior entao não tem q ficar mudando tanto
+					- Quanto menor o bloco a gravação é mais rapida
+		Extent - Conjunto de datablocks(tamanho ocupado pelos datablocks)
+			- Os segmentos formam extensoes no datablocks que nao necessariamente sao contiguas
+			- Os datablocks formam extensoes contiguas(Fica um datablock ao lado do outro) no extent
+			- 2 extents nao contiguos podem fazer parte de uma mesma tabela -  Caso vc crie uma tabela era ira ocupar um extent, mas caso depois voce add mais itens a tabela entao sera criado um novo extent nao contiguo ao antigo
+			- Um segmento pode ocupar mais de um extent
+			- d
+
+
+		Toda unidade logica ocupa um espaço físico, no hd 
+		- voce nao ve a tabela no hd que nem vce ve um arquivo .txt, .doc - por isso é uma unidade logica
+
+

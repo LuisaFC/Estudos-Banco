@@ -1,0 +1,5 @@
+Estruturas Fisicas e Lógicas
+	Lógicas:
+		Estruturas Primarias = Índices e Tabelas
+			Tabelas - Local de armazenamento de dados
+			Índice - Referencia para recuperação - tipo que PK

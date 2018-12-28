@@ -96,8 +96,41 @@ Estruturas Fisicas e Lógicas
 			- Quando um dado é comitado, ele permanece em mamroia, pois o acesso é mais rapido do que acesso ao disco - Logo os
 			dados comitado sao gravados no Redo Logs, afim de recuperação em caso de perdas antes da sincronização com datafiles
 				- Ao realizar um alteração, primeiro é feita no redo Log, na memoria, para so depois ser feito no .DBF e ser salvo no disco
-		
+
+
+		Archive - Arquivar os Redo logs a cada copia, a cada mudança
+			- Assim que for sincrozinar o redo com o .dbf entao ele é jogado no archive
+
+
+		Arquivo de Parametro - Arquivos que são lidos no momento que o banco sobe, ou seja, fica operacional
+			- Tipo:
+				- SPFILE - A instancia do banco le esse arquivo no momento da inicialização do banco
+					- Arquivo binario -> Nao conseguimos ler 
+					- Deixa os parametros persistentes(Ao editar, a edição é permanente)
+				- PFILE - Identido ao SPFILE, mas é em texto
+					- Usuario pode editar o arquivo
+			- Parametros: Quantidade de memoria, parametros de sessao...
+			- Tipos de Parametros:
+				- Estaticos - necessita reinicialização
+				- Dinamico - ao alterar, nao é necessario reinicializar. 
+					- Mas na proxima vez q iniciar ai sera alterado 
+
+
+
+
+
+	Armazenamento das Estruturas Fisicas:
 			
+
+		File System - Forma de armazenar os arquivos fisicos
+			- Atraves do SO
+
+		ASM - Automatic Storage Management - Forma de armazenar os arquivos fisicos
+			- Oracle acessa os arquivos sem passar pelo SO
+			- Melhora a performance
+
+
+
 			
 			
 			

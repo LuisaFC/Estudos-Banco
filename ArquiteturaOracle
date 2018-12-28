@@ -48,9 +48,53 @@ Estruturas Fisicas e Lógicas
 				- Tabela Particionada -> Ocorre quando voce divide os dados de uma tabela em 2 tablespaces - Usada em questoes voltadas a performance
 					- ex: Uma tabela em que os dados de 1960 a 2000 irao pra uma tablespace e os dados de 2001 a 2040 irao para outra tablespace
 			- O mais correto é uma tabela ocupar apenas uma tablespace.
+			- 2 Tipos de Tablespace:
+				- Permanente
+					- Dicionário de dados
+					- Dados de Aplicações
+						- Dados que o usuario coloca nas tabelas
+				- Temporária
+					- Dados Temporários
+						-
+						
 
 
 	Estruturas Fisicas:
+		
+		É o que eu posso ver no meu HD
+		As estruturas logicas apontam para 1 ou mais estruturas fisicas no hd
+		O usuário não sabe em que datafile a tabela está localizada - Usuario não tem acesso ao DBF
+		Objeto está apontando para uma estrutura Logica e essa estrutura logica esta apontando para uma estruta Fisica
+		
+		Datafiles(.DBF) - Estrutura física de armazenamento de Banco de Dados Oracle.
+			- Compõem as Tablespaces
+			- Seu tamanho é o total de tamanho da tablespace - Se a Tablespace vale 1Gb logo o Datafile vale 1Gb
+			- Armazena dados de Usuario - Dados que os usuarios fazem input no banco de dados
+			- Assim comoas Tablespaces, os Datafiles também são classificados em Permanentes ou Temporários
+			
+			
+		Controlfile(CTL) - Responsavel pelo controle de funcionamento da base de dados Oracle
+			- Toda base de dados deve ter pelo menos 1 controlfile e no maximo 8
+				- Caso tenha mais de 1, serve de redundancia, sao sempre iguais - Utiliza maior numero para segurança
+			- Toda vez que o banco liga(Start Up) ou desliga(Shut down), ele lê o controlfile, para informar se os processos
+			foram executados de forma correta e síncorna
+			- Informa a localização dos datafiles
+			- Aremazena informações como nome da databse, data de criação e hora e o ultimo checkpoint ocorrido com os datafiles
+			- Ao ligar o banco de dados, a primeira coisa que ele faz é ler o ControlFile e o arquivo de controle vai apontar para 
+			todas as estruturas fisicas, para as estruturas logicas se acharem.
+			
+			
+		Redo Log Files - Armazenam as transações executadas e confirmadas com Commit
+			- Logs de Transações
+			- Objetivo é permitir a maior recuperação de dados comitados
+			- Quando um dado é comitado, ele permanece em mamroia, pois o acesso é mais rapido do que acesso ao disco - Logo os
+			dados comitado sao gravados no Redo Logs, afim de recuperação em caso de perdas antes da sincronização com datafiles
+				- Ao realizar um alteração, primeiro é feita no redo Log, na memoria, para so depois ser feito no .DBF e ser salvo no disco
+		
+			
+			
+			
+			
 
 
 

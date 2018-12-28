@@ -55,14 +55,25 @@ Estruturas Fisicas e Lógicas
 						- Dados que o usuario coloca nas tabelas
 				- Temporária
 					- Dados Temporários
+
+			TableSpace Padrao:
+
+				- System e Sysaux - Armazenam toda a parte Core do banco, ou seja, todo o dicionario de dados
+					- Sysaux é auxiliar da system
+					- tudo o que ai dentro é critico
+				- Undo - Trabalha com a integridade do banco, auxiliando na leitura consistente
+					- Armazena os dados que ainda não foram comitados
+				- Temp - Auxilia a memoria oracle em operações mais pesadas
 			
 			Tablespace
-		 ___________________________		 __	
-		|_x_|_x_|_x_|_x_|__|__|__|__|	        |__| -> datablock
+		 ___________________________		 __   
+		|_x_|_x_|_x_|_x_|__|__|__|__|	    |__| -> datablock
 		|__|__|__|__|_x_|_x_|_x_|_x_|		XXXXX -> Tabela
 		|__|__|__|__|__|__|__|__|___|		|_x_|_x_|_x_|_x_| -> Extent
 		|__|__|__|__|__|_x_|__|__|__|
-						
+				
+
+
 
 
 	Estruturas Fisicas:
@@ -72,12 +83,16 @@ Estruturas Fisicas e Lógicas
 		O usuário não sabe em que datafile a tabela está localizada - Usuario não tem acesso ao DBF
 		Objeto está apontando para uma estrutura Logica e essa estrutura logica esta apontando para uma estruta Fisica
 		
-		Datafiles(.DBF) - Estrutura física de armazenamento de Banco de Dados Oracle.
+
+
+		Datafiles(.DBF) - Arquivo de dado - Estrutura física de armazenamento de Banco de Dados Oracle.
 			- Compõem as Tablespaces
 			- Seu tamanho é o total de tamanho da tablespace - Se a Tablespace vale 1Gb logo o Datafile vale 1Gb
 			- Armazena dados de Usuario - Dados que os usuarios fazem input no banco de dados
 			- Assim comoas Tablespaces, os Datafiles também são classificados em Permanentes ou Temporários
 			
+
+
 			
 		Controlfile(CTL) - Responsavel pelo controle de funcionamento da base de dados Oracle
 			- Toda base de dados deve ter pelo menos 1 controlfile e no maximo 8
@@ -89,8 +104,11 @@ Estruturas Fisicas e Lógicas
 			- Ao ligar o banco de dados, a primeira coisa que ele faz é ler o ControlFile e o arquivo de controle vai apontar para 
 			todas as estruturas fisicas, para as estruturas logicas se acharem.
 			
+
+
 			
 		Redo Log Files - Armazenam as transações executadas e confirmadas com Commit
+			- Log de dados, transações de dados
 			- Logs de Transações
 			- Objetivo é permitir a maior recuperação de dados comitados
 			- Quando um dado é comitado, ele permanece em mamroia, pois o acesso é mais rapido do que acesso ao disco - Logo os
@@ -98,8 +116,11 @@ Estruturas Fisicas e Lógicas
 				- Ao realizar um alteração, primeiro é feita no redo Log, na memoria, para so depois ser feito no .DBF e ser salvo no disco
 
 
+
 		Archive - Arquivar os Redo logs a cada copia, a cada mudança
 			- Assim que for sincrozinar o redo com o .dbf entao ele é jogado no archive
+
+
 
 
 		Arquivo de Parametro - Arquivos que são lidos no momento que o banco sobe, ou seja, fica operacional
@@ -116,6 +137,22 @@ Estruturas Fisicas e Lógicas
 					- Mas na proxima vez q iniciar ai sera alterado 
 
 
+		Password File - Arquivo de senha criptograda para autenticação no banco de dados
+			- Não é obrigatorio
+
+
+		
+		Arquivos de Backup - Composto de DBF, controlfiles, archivelogs e arquivos de inicialização
+			- Importante
+
+
+
+		Arquivos de Log - São arquivos de Trace ou .TRC, que servem para monitorar o banco de dados
+			- Log de Sistema
+
+
+
+		Arquivos de Alerta - Alert Logs, arquivos de alerta automaticos de todas as situações que ocorrem no banco de dados
 
 
 
@@ -128,6 +165,39 @@ Estruturas Fisicas e Lógicas
 		ASM - Automatic Storage Management - Forma de armazenar os arquivos fisicos
 			- Oracle acessa os arquivos sem passar pelo SO
 			- Melhora a performance
+
+
+
+
+Estruturas de Memória
+	
+
+	- Oracle ocupa por padrão 40% da memoria ram do servidor no momento da instalação
+		- Essa % pode ser alterada
+	- Instancia = Instalação - ao instalar o oracle na maquina vc criou uma instacia(memoria e processo)
+		- é possicel instalar o oracle mais de uma vez no mesmo servidor 
+
+	- Memoria Compartilhada
+		- SGA - System Global Area
+		- Memoria divida, utilizada por todos os usuarios
+
+	- Memoria Dedicada
+		- PGA - Program Global Area
+		- Cada usuario possui proprio espaço
+
+
+
+	- SGA
+		- Area de memoria compartilhada por todos usuarios de base de dados
+		- Objetivo de compartilhar acesso
+		- Evita o retrabalho do usuario
+		- Cada instancia(memoria e processo) possui sua propria SGA
+		- Areas do SGA:
+			- Shared Pool
+
+
+
+
 
 
 

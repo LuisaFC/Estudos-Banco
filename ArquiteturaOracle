@@ -55,7 +55,13 @@ Estruturas Fisicas e Lógicas
 						- Dados que o usuario coloca nas tabelas
 				- Temporária
 					- Dados Temporários
-						-
+			
+			Tablespace
+		 ___________________________		 __	
+		|_x_|_x_|_x_|_x_|__|__|__|__|	        |__| -> datablock
+		|__|__|__|__|_x_|_x_|_x_|_x_|		XXXXX -> Tabela
+		|__|__|__|__|__|__|__|__|___|		|_x_|_x_|_x_|_x_| -> Extent
+		|__|__|__|__|__|_x_|__|__|__|
 						
 
 

@@ -216,12 +216,14 @@ Estruturas de Memória
 				- Apos checar na shared pool se a query ja foi feita:
 					- Sim - > Vai pegar o plano de execução na shared pool e vai utilizar o plano pegando os dados no database buffer cache
 					- Não - > Bloco sobe para memoria - Database Buffer Cache
-				- Quando o usuario faz uma operação DML, o bloco é copiado para a area de memoria e toda a manipulação passa a ser feita
+				- Quando o usuario faz uma operação DML(insert, delete, update), o bloco é copiado para a area de memoria(ram) e toda a manipulação passa a ser feita
 				nessa area e nao no disco
 				- O DBBC mantem uma lista com os blocos mais utilizados e vai liberando espaço de acordo com os blocos menos utilizados sempre 
 				que necessario para acessar informações novas
-				- Ao efetuar um commit, os blocos do DBBC não sao gravados na hora em disco, nesse momento é feita a gravação no REDO LOG e o DBBC
+				- Ao efetuar um commit(Deixar valido para ser acessado no banco), os blocos do DBBC não sao gravados na hora em disco, nesse momento é feita a gravação no REDO LOG e o DBBC
 				mantem ainda os blocos alterados para que esses sejam gravados em conjunto com outros blocos em um momento oportuno.
+					- Os arquivos commitados estao no Redo Log, depois serão sincronizados com DBF
+				
 					
 
 

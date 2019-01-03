@@ -223,7 +223,12 @@ Estruturas de Memória
 				- Ao efetuar um commit(Deixar valido para ser acessado no banco), os blocos do DBBC não sao gravados na hora em disco, nesse momento é feita a gravação no REDO LOG e o DBBC
 				mantem ainda os blocos alterados para que esses sejam gravados em conjunto com outros blocos em um momento oportuno.
 					- Os arquivos commitados estao no Redo Log, depois serão sincronizados com DBF
-				
+					
+			- RedoLog Buffer:
+				- Area da memoria correspondente aos Redo Logs no disco
+					- Vai continuar em memoria, mas em outra area da memoria, diferente da DDBBC
+				- Assim que uma transição é comitada, ela é guardada no Redo Log Buffer que escreverá no arquivo Redo Log no disco
+			
 					
 
 

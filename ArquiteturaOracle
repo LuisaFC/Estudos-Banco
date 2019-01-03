@@ -229,6 +229,24 @@ Estruturas de Memória
 					- Vai continuar em memoria, mas em outra area da memoria, diferente da DDBBC
 				- Assim que uma transição é comitada, ela é guardada no Redo Log Buffer que escreverá no arquivo Redo Log no disco
 			
+			- Large Pool:
+				- Para objetos grandes não ocuparem a shared pool, entao a Large Pool permite o paralelismo
+				(querys grandes que são executadas em mais de um processador, em que cada um processa uma aprte da query) no oracle
+				- Ex: Rotina de Backup
+			
+			- Java Pool:
+				- Armazena códigos java e jvm
+			
+			- Streams Pool:
+				- Area que armazena o serviço de mensagens para replicação de dados
+	
+	- PGA:
+		- É alocada uma área de PGA por sessão, que auxilia os usuarios com cláusulas Order by ou distinct, variaveis BIND
+		ou variaveis de sessão
+		- Cada usuario possui sua area de memoria, para n ter q ocupar area compartilhada de algo que so voce ira fazer
+		
+			
+			
 					
 
 

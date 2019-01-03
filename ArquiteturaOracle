@@ -193,7 +193,27 @@ Estruturas de Memória
 		- Evita o retrabalho do usuario
 		- Cada instancia(memoria e processo) possui sua propria SGA
 		- Areas do SGA:
-			- Shared Pool
+			- Shared Pool:
+				- Porção de memória compartilhada
+				- Shared SQL - estrutura de memoria compartilhada qur contem comandos SQL que sao exceutados por varios
+				usuarios conectados em um mesmo banco
+				- Fases:
+					- Parse:
+						- Analise Sintatica
+						- Analise Semantica
+					- Plano de Excução
+						- Resultado da Parse
+						- Se será utilizado order by, group by...
+					- Library Cache
+						- Quando um usuario realizar uma query, é verificado na library cache(que fica em memoria) 
+						se essa query ja foi realizada, em caso positivo já se é utilizado o plano de execução 
+						anterior, caso contrario é feito a etapa de Parse.
+					- Data Dictionary Cache
+						- Definições de Dicionario
+						- Onde são salvo os objetos
+			- Database Buffer Cache:
+				- 
+					
 
 
 

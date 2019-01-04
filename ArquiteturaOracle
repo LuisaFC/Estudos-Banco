@@ -338,7 +338,19 @@ Analisando Queries no Oracle
 						- Redolog agr ta assim, possui duas coisas:
 							- 100, 2000, 5000
 							- SCN
+				1.9 - A transação é gravada em disco, nos Redolog Files
+						- LGWRT leva o conteudo do redolog buffer para o redolog files
+				1.10 - O redolog Buffer é limpo
+				1.11 - O lock é retirado do bloco indentificado com o SCN da transação
+						- Database Buffer Cache = SCN 5000
+							- Assim é possivel conferir se o SCN do buffer cache é igual ao do redolog file
+				1.12 - Area do Undo nesse momento pode ser sobrescrita
+				1.13 -  O valor é sincronizado com os datafile
+						- Datafile = 5000
+				1.14 - O processo CKPT avisa ao DBWR para escrever os dados no disco - portanto esse processo é opcional
+				podendo ser assumido pelo DBWRT
 				
+						
 					
 		
 		

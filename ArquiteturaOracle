@@ -244,6 +244,68 @@ Estruturas de Memória
 		- É alocada uma área de PGA por sessão, que auxilia os usuarios com cláusulas Order by ou distinct, variaveis BIND
 		ou variaveis de sessão
 		- Cada usuario possui sua area de memoria, para n ter q ocupar area compartilhada de algo que so voce ira fazer
+	
+	
+Configurações e Processos:
+	
+	- 3 Formas de configurar PGA e SGA
+		- Versao 9i:
+			- Manual
+		- Versao 10g
+			- Manual
+			- AMM - Automatic Memory Management
+		- Versoes 11g e 12c
+			- Manual
+			- AMM
+			- ASMM - Automatic shared Memoru Management
+	- Processos:
+		- PMON
+			- Responsavel por monitorar todos os outros processos
+			- Quando um processo termina irregularmente, é o PMON que libera os dados(lock) e recupera esse processo
+			- Ex: Usuario esta realizando um update e o dado entra em stado de lock, o banco de dado cai e entao o dado
+			fica e lock. o PMON percebe que o dado esta há muito tempo em lock e entao o libera.
+				- Lock - > Quando o dado não pode ser acessado por estar sendo utilizado por algun usuario
+					- Ex: um usuario esta realizando update, esse dado entra em lock
+		- SMON
+			- Recuperação automatica da instancia no Startup
+			- Ajuda na tarefa de leitura, principalmete qaundo uma instancia cai, ate a iniciação do banco
+			
+		- DBWritern
+			- Responsavel por gravar o conteudo dos Database Buffer Cache(DBBC) nos respectivos Datafiles. 
+			- A gravação ocorre quando o DBBC necessita de espaço, então o DBWritern grava os dados que ja foram comitados,
+			liberando espaço para nocas transações
+		
+		- LGWR
+			- Log Writern
+			- faz a ponte entre o Redo Log Buffer e os arquivos do Redo Log Files
+			- É acionado sempre que o suuario efetua um commit, liberando a entrada do buffer para uma nova transação.
+			- A transação gravada pelo LGWR recebe um numero chamado SCN
+		
+		- CKPT
+			- Checkpoint
+			- Responsavel por sinalizar ao DBW o moemtno da gravação do DBBC nos seus Daatafiles, ou seja, d amemoria para disco
+			
+		- MMON
+			- Associado ao AWRiter
+			- Captura as estatisticas do banco
+		
+		- MMNL
+			- Grava as estatisticas do bancos ASH e árte AWR em disco 
+		
+		-RECO
+			- Recupera ou finaliza as falhas de transações. 
+			- Somente em base de dados distribuidas
+	
+
+Analisando Queries no Oracle		
+
+	Como Ocorre Uma Operação DML:
+		- Oracle = Intancia e Processos + BD
+			Datafile = BD
+		- 
+		
+
+			
 		
 			
 			

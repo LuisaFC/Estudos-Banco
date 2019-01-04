@@ -299,10 +299,42 @@ Configurações e Processos:
 
 Analisando Queries no Oracle		
 
-	Como Ocorre Uma Operação DML:
-		- Oracle = Intancia e Processos + BD
+	- Oracle = Intancia e Processos + BD
 			Datafile = BD
-		- 
+	
+	Como Ocorre Uma Operação DML:
+	
+		- Ações do Usuario:
+			1 - Update funcionarios set salatio = 5000 where idfunc = 100
+				1.1 Usuario faz query em seu pc e mandou para o servidor Oracle
+				1.2  - A parse do SQL e a checagem dos acessos são armazenados na shared pool e o 
+				     - Bloco de dados é lido na database (Database File) 
+				     		- No caso foi buscar o salario do usuario de id = 100 e salario antigo = 2000
+				1.3 - Uma copia do blcoo é colocada na memoria, no database buffer cache. O blcoo fica em Lock
+						- No caso, no Database Buffer cache, o dado que fica em lock é 2000(o salario antigo - o que estava escrito no datafile)
+				1.4 - Antes do update ocorrer a transação é gerada no Redolog Buffer
+						- 100, 2000, 5000 - Ou sea, idUsuario, Salario antigo, Novo salario
+				1.5 - É criado o bloco Undo, no Database Buffer Cache, com valor antido do bloco(Datafile)
+						- Bloco undo fica com valor de 2000 escrito nele
+				1.6 - Valor do bloco, no Database Buffer cache, é atualizado para o valor de salario novo
+				
+				Usuario recebe mensagem na tela
+				
+				1.7 - Dois caminhos:
+					1.7.1 - Commit - salvar no banco o que foi realizado
+					1.7.2 - Rollback - Desfazer a transação
+					
+				
+				Vamos Fingir q usuaio optou pelo rollback
+				
+				1.8 - Ao efetuar o rollback, o valor do bloco Undo, sobrescreve o bloco na memroia e a transação do redolog 
+				é apagada e o lock é retirado do bloco do databse buffer cache
+						- RedoLog Buffer = vazio
+						- Bloco = 2000
+						
+				Vamos Fingir q usuaio optou pelo commit
+					
+		
 		
 
 			

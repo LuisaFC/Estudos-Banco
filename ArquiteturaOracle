@@ -333,6 +333,12 @@ Analisando Queries no Oracle
 						- Bloco = 2000
 						
 				Vamos Fingir q usuaio optou pelo commit
+				
+				1.8 - É gerado um número unico de SCN no RedoLog, que caracteriza a transação como única
+						- Redolog agr ta assim, possui duas coisas:
+							- 100, 2000, 5000
+							- SCN
+				
 					
 		
 		

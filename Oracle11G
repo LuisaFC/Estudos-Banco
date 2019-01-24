@@ -1,0 +1,96 @@
+SELECT METADA FROM SYS.KOPM$; -- Verificando ambiente para saber quantos bits tem
+
+/*
+B023 = 32Bits
+B047 = 64Bits
+*/
+
+-- Dicionario de Dados
+
+Select* from dict; -- Ver o dicionario todo
+
+-- Instancia Unica - RAC
+
+Select PARALLEL from V$INSTANCE; -- Tudo que vier com v$ significa view
+
+/*
+A query acima esta perguntando se esta sendo usado paralelismo se a resposta for:
+NO - Entao é instancia unico
+YES - Entao não é instancia unica
+*/
+
+-- Estrutura de Memoria
+
+SELECT COMPONENT, CURRENT_SIZE, MIN_SIZE, MAX_SIZE FROM V$SGA_DYNAMIC_COMPONENTS;
+
+-- Conectando a outro Banco de Dados
+
+SQLPLUS SYSTEM/SENHA@NOMEDOBANCO
+ORACLE_SID=BANCO001
+
+
+-- Nome do Banco para mostrar qual banco esta utilizando
+
+SELECT NAME FROM V$DATABASE
+
+/*
+Armazenamnto
+LÓGICO -> TABLESPACES -> SEGMENTOS(OBJETOS) -> EXTENSÕES(ESPAÇO) -> BLOCOS(DO SO)
+
+FISICO -> DATAFILES
+*/
+
+-- NAO PODEMOS DETERMINAR EM QUAL ARQUIVO FISICO UM OBJETO FICARÁ
+
+-- CRIANDO TABELA
+
+CREATE TABLE cursos(
+  ID_CURSO ITN PRIMARY KEY,
+  NOME VARCHAR2(30),
+  CARGA INT
+)TABLESPACE USERS;
+
+CREATE TABLE teste(
+  ID_TESTE INT,
+  NOME VARCHAR2(30)
+);
+
+
+SELECT TABLE_NAME, TABLESPACE_NAME
+FROM USER_TABLES;
+
+SELECT TABLE_NAME, TABLESPACE_NAME
+FROM USER_TABLES
+WHERE TABLE_NAME = 'cursos';
+
+SELECT TABLE_NAME, TABLESPACE_NAME
+FROM USER_TABLES
+WHERE TABLE_NAME = 'teste';
+
+-- Todo objeto é criado por padrao na tablespace user, exceto quando se esta logado com o usuario system, entao o objeto sera criado na tablespace system
+
+SELECT SEGMENT_NAME, SEGMENT_TYPE, TABLESPACE_NAME, BYTES, BLOCKS, EXTENTS FROM SEGMENT_NAME;
+
+SELECT SEGMENT_NAME, SEGMENT_TYPE, TABLESPACE_NAME, BYTES, BLOCKS, EXTENTS FROM USER_SEGMENT WHERE SEGMENT_NAME = 'cursos';
+
+-- Fazendo Backup
+/*
+1- Criar uma pasta nova
+2- CREATE TABLESPACE NOME
+DATAFILE 'colocar caminho da pasta nova' ex: 'C:/DATA/nome.dbf
+SIZE 100M AUTOEXTEND
+ON NEXT 100M
+MAXSIZE 4096M
+*/
+ --Adicioando talespace
+ALTER TABLESPACE NOME
+ADD DATAFILE 'C:/DATA/nome02.dbf
+
+
+
+
+
+
+
+
+

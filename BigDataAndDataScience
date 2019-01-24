@@ -1,0 +1,25 @@
+Atualmente as empresas geram muitos dadose com isso há mais informações
+
+Informação está diretamente ligada a poder, quanto mais informação entao mais poder possui uma empresa
+
+Dados geram informações - Uma empresa que possui muitos dados e gera informações com ele entao ela posui muito poder
+
+Insight -> É a solução para um problema
+           Decisão tomada em cima de dados
+
+Data Science x Business Inteligence
+    O que faz a ciencia de dados?
+        Coleta de dados de varias fontes, analisando e ajudando nas tomadas de decisoes de forma preditiva
+        e em grande quantidades, gerando insights
+           Essa afirmação acima serveria tanto para BI quanto para Data Science se nao fosse pela palavra PREDITIVA
+              Preditiva é para prever algo 
+           BI lida com dados do PASSADO, observa o que ocorreu no passado
+           Ja Data Science posso predizer o que vaia acontecer no futuro, trata do futuro, atraves de estatistica
+           
+Ciencia de Dados é o processo de extrair dados de diferentes fontes em diferentes velocidades 
+processando grandes quantidades gerando valor
+    Grandes Quantidades quer dizer Big Data(Dado não estruturado)
+    Big Data é uma grande quantidade de dados não estruturado
+    Ex de dado nao estruturado: Video
+
+Data Science não é uma ferramente, é um conjunto de dados

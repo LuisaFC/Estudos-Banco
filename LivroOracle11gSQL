@@ -1,0 +1,17 @@
+Banco de Dados Relacional
+        É uma coleção de informções relacionadas, organiadas em tabelas
+       
+Sistema Gerenciador de Banco de Dados
+        Software usado para acessar o banco de dados
+        Mysql, Oracle, SQLServer... 
+SQL
+	Linguagem padronizada
+	5 tipos de intruções:
+		1 - Intruções de Consulta
+			Recupera linhas armazenadas nas tabelas do banco de dados
+			Voce descreve utilzando SELECT
+		2 - Intruções de DML(Data Definition Language)
+			
+		3 -
+		4 -
+		5 -

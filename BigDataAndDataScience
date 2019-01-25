@@ -23,3 +23,18 @@ processando grandes quantidades gerando valor
     Ex de dado nao estruturado: Video
 
 Data Science não é uma ferramente, é um conjunto de dados
+
+Matematica e estatistica são a base da ciencia de dados
+
+2 pilares do Data Science
+           - Engenharia de Dados
+                      Profissional capaz de projetar o armazenamento de grandes quantidades de dados
+           - Pensamento Lógico
+                      Profssional capaz de analisar os dados e aprender algo novo com ele, agregando valor ao negocio
+                      
+Processamento Horizontal
+           Pegar toda a massa de dados e a processa com um cluster, ou seja, divide o processamento em varias maquinas
+           
+Processamento Vertival
+           Seria quando a memoria emcher entao vc troca por uma memoria maior, sendo sempre na mesma maquina
+

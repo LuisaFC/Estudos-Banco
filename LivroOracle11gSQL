@@ -10,8 +10,16 @@ SQL
 		1 - Intruções de Consulta
 			Recupera linhas armazenadas nas tabelas do banco de dados
 			Voce descreve utilzando SELECT
-		2 - Intruções de DML(Data Definition Language)
-			
-		3 -
-		4 -
-		5 -
+		2 - Intruções de DML(Data Manipulation Language)
+			Altera o conteudo da tabela
+			Voce descreve utilizando INSERT, UPDATE, DELETE
+		3 - Instruções de DDL(Data Definition Language)
+			Define as estruturas de dados
+			Voce descreve utilizando CREATE, ALTER, DROP, RENAME, TRUNCATE
+		4 - Transaction Control(TC)
+			Registram permanentemente qualquer alteração feita ou desfaz essas alterações
+			Voce descreve utilizando COMMIT, ROLLBACK , SAVEPOINT
+		5 - Controle de Dados
+			Altera as permissões nas estruturas
+			GRANT, REVOKE
+	
